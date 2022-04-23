@@ -1,0 +1,51 @@
+class Chipper:
+    def __init__(self, private_key):
+        self.character = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k",
+                          "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+        self.private_key = private_key
+
+    def matrix(self, position, target):
+        r = []
+        for a, b in enumerate([list(target), list(target)]):
+            n = 0
+            for i, j in enumerate(b):
+                pk, c = self.private_key[a][i], self.character.index(j)
+                print(f"{pk} x {c} = {pk*c}")
+                n += pk*c
+            print(f"{'-'*15}+\n{n}\n")
+            print(f"> {n} = {n % len(self.character)} mod({len(self.character)})\n")
+            r.append(n % len(self.character))
+        return r
+
+    def encoding2Chipper(self, string):
+        print(f"Original text: {string}")
+
+        string = ''.join(filter(str.isalpha, string.lower()))
+        print(f"Get only alphabet: {string.upper()}")
+
+        # Cek ganjil atau genap
+        if len(string) % 2 == 1:
+            string += string[-1:]
+            print(f"Ooppsss... is even, I add '{string[-1:].upper()}' in last string")
+
+        split_string, r, f = [string[i:i+2]
+                              for i in range(0, len(string), 2)], [], ''
+
+        print("Split every 2 character...")
+
+        print("Calculating...\n")
+        for a, b in enumerate(split_string):
+            r.append(self.matrix(a, b))
+
+        for x in r:
+            for i in x:
+                print(f"{i} => {self.character[i].upper()}", end=" | ")
+                f += self.character[i].upper()
+            f += " "
+
+        print(f"\nResult: {f}")
+
+
+if __name__ == "__main__":
+    chipper = Chipper([[3, 3], [2, 5]])
+    chipper.encoding2Chipper("HELP")
