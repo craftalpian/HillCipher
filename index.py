@@ -10,7 +10,6 @@ class Chipper:
         r, d = [], [list(m[i:i+n]) for i in range(0, len(m), n)]
         for a, b in enumerate(d):
             n = 0
-            print(a, b, 'ab')
             for i, j in enumerate(b):
                 pk, c = self.private_key[a][i], self.character.index(j)
                 print(f"{pk} x {c} = {pk*c}")
@@ -47,7 +46,7 @@ class Chipper:
                 f += self.character[i].upper()
             f += " "
 
-        print(f"\nResult: {f}")
+        print(f"\n>>Result: {f}<<")
 
 
 if __name__ == "__main__":
