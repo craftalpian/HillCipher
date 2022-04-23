@@ -5,9 +5,12 @@ class Chipper:
         self.private_key = private_key
 
     def matrix(self, position, target):
-        r = []
-        for a, b in enumerate([list(target), list(target)]):
+        n = len(self.private_key)
+        m = target*n
+        r, d = [], [list(m[i:i+n]) for i in range(0, len(m), n)]
+        for a, b in enumerate(d):
             n = 0
+            print(a, b, 'ab')
             for i, j in enumerate(b):
                 pk, c = self.private_key[a][i], self.character.index(j)
                 print(f"{pk} x {c} = {pk*c}")
@@ -23,10 +26,11 @@ class Chipper:
         string = ''.join(filter(str.isalpha, string.lower()))
         print(f"Get only alphabet: {string.upper()}")
 
-        # Cek ganjil atau genap
-        if len(string) % 2 == 1:
-            string += string[-1:]
-            print(f"Ooppsss... is even, I add '{string[-1:].upper()}' in last string")
+        if len(self.private_key) <= 2:
+            # Cek ganjil atau genap
+            if len(string) % 2 == 1:
+                string += string[-1:]
+                print(f"Ooppsss... is even, I add '{string[-1:].upper()}' in last string")
 
         split_string, r, f = [string[i:i+len(self.private_key)]
                               for i in range(0, len(string), len(self.private_key))], [], ''
@@ -47,5 +51,5 @@ class Chipper:
 
 
 if __name__ == "__main__":
-    chipper = Chipper([[3, 3], [2, 5]])
-    chipper.encoding2Chipper("HELP")
+    chipper = Chipper([[6, 24, 1], [13, 16, 10], [20, 17, 15]])
+    chipper.encoding2Chipper("ACT")
