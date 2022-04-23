@@ -2,7 +2,11 @@ class Chipper:
     def __init__(self, private_key):
         self.character = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k",
                           "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
-        self.private_key = private_key
+        if isinstance(private_key, list):
+            self.private_key = private_key
+        else:
+            # Need change string to key list
+            print()
 
     def matrix(self, position, target):
         # Get length of private_key
@@ -43,5 +47,5 @@ class Chipper:
 
 
 if __name__ == "__main__":
-    chipper = Chipper([[3, 7, 1], [24, 4, 19], [5, 4, 19]])
-    print(chipper.encoding2Chipper("cho"))
+    chipper = Chipper([[7, 8], [11, 11]])
+    print(chipper.encoding2Chipper("short example"))
