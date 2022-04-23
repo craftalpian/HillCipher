@@ -28,10 +28,10 @@ class Chipper:
             string += string[-1:]
             print(f"Ooppsss... is even, I add '{string[-1:].upper()}' in last string")
 
-        split_string, r, f = [string[i:i+2]
-                              for i in range(0, len(string), 2)], [], ''
+        split_string, r, f = [string[i:i+len(self.private_key)]
+                              for i in range(0, len(string), len(self.private_key))], [], ''
 
-        print("Split every 2 character...")
+        print(f"Split every {len(self.private_key)} character...")
 
         print("Calculating...\n")
         for a, b in enumerate(split_string):
