@@ -3,3 +3,4 @@
 *.pdf
 *.PDF
 __pycache__
+./__pycache__
