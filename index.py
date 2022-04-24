@@ -10,6 +10,7 @@ class Chipper:
         d, b = int(math.sqrt(len(private_key))), []
         for x in list(private_key.lower()):
             b.append(self.character.index(x))
+        # https://stackoverflow.com/a/47396778
         return [b[(i*len(b))//d:((i+1)*len(b))//d] for i in range(d)]
 
     def matrix(self, position, target):
@@ -51,5 +52,5 @@ class Chipper:
 
 if __name__ == "__main__":
     # chipper = Chipper([[7, 8], [11, 11]])
-    chipper = Chipper("PIANJAMAL")
+    chipper = Chipper("PRVATEKEY")
     print(chipper.encoding2Chipper("short example"))
