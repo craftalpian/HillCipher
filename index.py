@@ -1,12 +1,16 @@
+import math
+
 class Chipper:
     def __init__(self, private_key):
         self.character = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k",
                           "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
-        if isinstance(private_key, list):
-            self.private_key = private_key
-        else:
-            # Need change string to key list
-            print()
+        self.private_key = private_key if isinstance(private_key, list) else self.privateKey2Matrix(private_key)
+
+    def privateKey2Matrix(self, private_key):
+        d, b = int(math.sqrt(len(private_key))), []
+        for x in list(private_key.lower()):
+            b.append(self.character.index(x))
+        return [b[(i*len(b))//d:((i+1)*len(b))//d] for i in range(d)]
 
     def matrix(self, position, target):
         # Get length of private_key
@@ -23,7 +27,7 @@ class Chipper:
 
     def encoding2Chipper(self, string):
         # Remove whitespace and only get alphabet
-        string = ''.join(filter(str.isalpha, string.lower()))
+        string = "".join(filter(str.isalpha, string.lower()))
 
         # Count mod for append last character in list var
         m = len(string) % len(self.private_key)
@@ -42,10 +46,10 @@ class Chipper:
             for i in x:
                 f += self.character[i].upper()
             f += " "
-
         return f
 
 
 if __name__ == "__main__":
-    chipper = Chipper([[7, 8], [11, 11]])
+    # chipper = Chipper([[7, 8], [11, 11]])
+    chipper = Chipper("PIANJAMAL")
     print(chipper.encoding2Chipper("short example"))
