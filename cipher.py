@@ -1,6 +1,6 @@
 import math
 
-class Chipper:
+class Cipher:
     def __init__(self, private_key):
         self.character = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k",
                           "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
@@ -26,7 +26,7 @@ class Chipper:
             r.append(n % len(self.character))
         return r
 
-    def encoding2Chipper(self, string):
+    def encoding2Cipher(self, string):
         # Remove whitespace and only get alphabet
         string = "".join(filter(str.isalpha, string.lower()))
 
@@ -48,9 +48,3 @@ class Chipper:
                 f += self.character[i].upper()
             f += " "
         return f
-
-
-if __name__ == "__main__":
-    # chipper = Chipper([[7, 8], [11, 11]])
-    chipper = Chipper("PRVATEKEY")
-    print(chipper.encoding2Chipper("short example"))
