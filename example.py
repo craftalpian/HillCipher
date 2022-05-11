@@ -1,5 +1,6 @@
 from cipher import Cipher
 
-c = Cipher([[1, 2], [3, 4]])
+c = Cipher([[1, 3],
+            [2, 1]])
 
-print(c.encoding2Cipher('HELLO'))
+print(c.encoding2Cipher('DARKNIGHT'))

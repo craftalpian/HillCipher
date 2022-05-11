@@ -2,8 +2,8 @@ import math
 
 class Cipher:
     def __init__(self, private_key):
-        self.character = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k",
-                          "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+        self.character = ["z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k",
+                          "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y"]
         self.private_key = private_key if isinstance(private_key, list) else self.privateKey2Matrix(private_key)
 
     def privateKey2Matrix(self, private_key):
@@ -22,8 +22,10 @@ class Cipher:
             n = 0
             for i, j in enumerate(b):
                 pk, c = self.private_key[a][i], self.character.index(j)
+                print(f"{j} is {c}")
                 n += pk*c
             r.append(n % len(self.character))
+            print(f"{n} => {n % len(self.character)} [{self.character[n % len(self.character)].upper()}]")
         return r
 
     def encoding2Cipher(self, string):
@@ -31,9 +33,9 @@ class Cipher:
         string = "".join(filter(str.isalpha, string.lower()))
 
         # Count mod for append last character in list var
-        m = len(string) % len(self.private_key)
-        if m != 0:
-            for i in range(m):
+        mod = len(string) % len(self.private_key)
+        if mod != 0:
+            for i in range(mod):
                 string += string[-1:]
 
         # Split string to adjust dimensional size between matrix and string
